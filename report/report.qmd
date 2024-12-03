@@ -1,0 +1,38 @@
+---
+title: Deliverable 12 - Final Project Deliverable
+date: 12/9/24
+author:
+    - name: Zoe Wood and Edson Decker
+      email: woodzc@vcu.edu and deckere2@vcu.edu
+format:
+    html:
+        embed-resources: true
+        html-math-method: katex
+        theme: cosmo
+---
+
+### Links
+* [Link to project overview video]() not made yet
+
+* [Link to github repository](https://github.com/zcwood/cmsc408deliverable12.git)
+
+* [An embedded video using the Quarto video feature.] not made yet 
+
+
+The database implementation will actualize the requirements described in the design document and result in a working database hosted in the cloud and accessible through a web interface.  The web interface will implement examples of CRUD operations (e.g., Create, Retrieve, Update, and Delete).
+
+
+### Web interface design: 
+Your report should explain how you implemented the web interface.  What tools did you use?  Why?
+
+### Screenshots: 
+For each of the major screens in your program, provide an image and an explanation of what the screen does or how it supports the user interface.
+
+### Reports: 
+Your web site should contain a Reports page with 20 queries selectable from a menu.  Each report should run.
+
+### Future considerations:
+ What needs to be done next to take your project to the next level? If you had more time, what would you do next?
+
+### Reflections on the overall project: 
+How did the project go? Did you achieve what you originally intended to build? If not, what kept you from achieving it?
