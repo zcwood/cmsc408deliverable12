@@ -36,3 +36,116 @@ Your web site should contain a Reports page with 20 queries selectable from a me
 
 ### Reflections on the overall project: 
 How did the project go? Did you achieve what you originally intended to build? If not, what kept you from achieving it?
+
+### ER Diagram
+The report includes a crows-foot ER diagram that visually describes the database solution and architecture.
+```{mermaid}
+erDiagram
+       GAME_DEVELOPER {
+        string Username
+        int GAME_DEV_id PK
+    }
+        SPRITE_ARTIST {
+        string Username
+        int SPRITE_ARTIST_id PK
+    }
+        SOUND_DESIGNER {
+        string Username
+        int SOUND_DESIGNER_id PK
+    }
+
+
+    VIDEO_GAME {
+        string title
+        int game_id PK
+        string genre
+        int suggested_age_for_players
+    }
+
+    NPC {
+        string NPC_Name
+        int NPC_id PK
+        int SPRITE_ID
+        int Projectile_use_ID
+        int starting_health
+        int contact_damage
+        int defense
+        int armor
+        int speed
+        int aggro_range
+        string AI_type
+        string biome
+        bool spawns_during_day
+        bool spawns_at_night
+        bool is_boss
+        bool is_miniboss
+        string team
+        int spawn_chance
+        int spawn_cap_contribution
+        bool ignores_spawn_cap
+        int max_number_allowed
+        int number_defeated_by_player
+        int player_deaths
+        bool spawns_on_easy_diff
+        bool spawns_on_mediumcore_diff
+        bool spawns_on_hardcore_diff
+        int SOUND_ID
+        int ITEM_DROPS_ID
+
+
+    }
+
+        SPRITE{
+        string Sprite_Name
+        int SPRITE_ID PK
+        }
+
+        SOUND{
+        string Sound_Name
+        int SOUND_ID PK
+        int Length
+        }
+
+        PROJECTILE {
+        string Projectile_Name
+        int PROJECTILE_id PK
+        int velocity
+        string AI_type
+        int lifespan
+        int starting_health
+        int contact_damage
+        int secondary_proj_id
+    }
+
+        ITEM_DROPS {
+        int ITEM_id PK
+        int drop_chance
+    }
+
+    GAME_DEVELOPER ||--o{ VIDEO_GAME : "contributes to"
+    SPRITE_ARTIST ||--o{ VIDEO_GAME : "contributes to"
+    SOUND_DESIGNER ||--o{ VIDEO_GAME : "contribues to"
+    VIDEO_GAME ||--o{ NPC : "contains"
+    NPC }o--o{ PROJECTILE : "Summons or attacks with"
+    NPC ||--|| SPRITE : "uses"
+    PROJECTILE }o--o{ PROJECTILE : "Summons or attacks with"
+    NPC ||--|| VIDEO_GAME : "belongs to"
+    NPC ||--o{ ITEM_DROPS : "Drops when defeated"
+    NPC }o--o{ SOUND : "Plays"
+  ```
+
+### DB integrity
+    The tables include foreign keys and other integrity constraints as relevant to the problem and solution.
+
+ The foreign keys ensure that the relationships between tables are maintained, and
+ referential integrity is enforced. For instance, the `NPC` table has foreign keys   referencing the `SPRITE`, `PROJECTILE`, `SOUND`, and `ITEM_DROPS` tables, ensuring   that an NPC's attributes are linked to valid entities in these tables.    Additionally, primary keys (such as `GAME_DEV_id` in `GAME_DEVELOPER`) uniquely   identify records, while foreign keys (like `GAME_DEV_id` in `VIDEO_GAME`) maintain referential integrity between related tables. These constraints prevent orphaned records and ensure consistency across the database.
+
+
+### Data and the DDL
+    The tables are loaded using a single DDL script with appropriate data. The DDL script is documented in the report.
+
+### User Interface Design
+    The report contains a description of the user interface design with all the features documented.
+
+### Create
+    The interface includes screen(s) to create/insert new objects to the database.
