@@ -36,6 +36,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo "<a href='/'>[home]</a><br/>";
     echo "<h1>Contents of table: $table_name</h1>";
+    echo "<button onclick=\"window.location.href='/crud/create.php?table=$table_name';\">Create New Record</button><br><br>"; // Create button
     echo "<table border='1'>";
     
     // Output table headers
@@ -53,24 +54,23 @@ if ($result->num_rows > 0) {
         foreach ($row as $key => $value) {
             echo "<td>" . htmlspecialchars($value ?? '') . "</td>";
         }
-
-        // Add CRUD links if the primary key exists
+        // Assuming a primary key exists
         if ($primaryKey && isset($row[$primaryKey])) {
-    $primaryKeyValue = htmlspecialchars($row[$primaryKey]); // Prevent XSS
-    echo "<td>
-        <a href='/crud/update.php?table=$table_name&id=$primaryKeyValue'>Update</a>
-        <a href='/crud/delete.php?table=$table_name&id=$primaryKeyValue'>Delete</a>
-    </td>";
-} else {
-    echo "<td>No actions available</td>";
-}
-
+            $primaryKeyValue = htmlspecialchars($row[$primaryKey]); // Prevent XSS
+            echo "<td>
+                <a href='/crud/update.php?table=$table_name&id=$primaryKeyValue'>Update</a>
+                <a href='/crud/delete.php?table=$table_name&id=$primaryKeyValue'>Delete</a>
+            </td>";
+        } else {
+            echo "<td>No actions available</td>";
+        }
         echo "</tr>";
     }
 
     echo "</table>";
 } else {
     echo "No records found in table: $table_name";
+    echo "<br><button onclick=\"window.location.href='/crud/create.php?table=$table_name';\">Create New Record</button>"; // Create button when table is empty
 }
 
 $conn->close();

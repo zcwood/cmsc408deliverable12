@@ -1,5 +1,13 @@
 <?php
-// Database connection parameters
+session_start();
+
+// Redirect to login page if not logged in
+if (empty($_SESSION['logged_in'])) {
+    header('Location: login.php');
+    exit;
+}
+
+
 $servername = "mysql_db_2"; // Docker service name for the MySQL container
 $username = "root";
 $password = "root_password";
@@ -31,4 +39,13 @@ if ($result->num_rows > 0) {
 }
 
 $conn->close();
+
+// Add the Reports Page button
+echo "<button onclick=\"window.location.href='reports/reports.php';\">Go to Reports Page</button>";
+
+//logout button
+echo "<a href='logout.php'>Logout</a>";
+
+
 ?>
+
