@@ -12,30 +12,116 @@ format:
 ---
 
 ### Links
-* [Link to project overview video]() not made yet
+* [Link to project overview video](https://vcu.zoom.us/rec/share/VTlGiE4FnMmKs_8qkUydPeZWh6iO7labdR_q57NvjgP0pgj6GKrSR2s8i4z2DIob.pql-kUzzrDRJmL5H) 
 
 * [Link to github repository](https://github.com/zcwood/cmsc408deliverable12.git)
+ <iframe width="560" height="315" src="https://vcu.zoom.us/rec/share/VTlGiE4FnMmKs_8qkUydPeZWh6iO7labdR_q57NvjgP0pgj6GKrSR2s8i4z2DIob.pql-kUzzrDRJmL5H" frameborder="0" allowfullscreen></iframe>
 
-* [An embedded video using the Quarto video feature.] not made yet 
 
 
 The database implementation will actualize the requirements described in the design document and result in a working database hosted in the cloud and accessible through a web interface.  The web interface will implement examples of CRUD operations (e.g., Create, Retrieve, Update, and Delete).
 
+## Problem Description
+
+### Problem Domain 
+: A video game may have hundreds of possible enemies. It wouldn't make sense for the information about these enemies to be scattered around randomly in the game code. There needs to be some database to manage all of the enemy types and all of their attributes in order to efficiently manage game assets. This is the context in which our database will exist: a game development environment that prioritizes efficient and reasonable management and retrieval of game assets.
+
+
+### Need 
+: A modern video game may contain hundreds of unique enemy types, with each possessing dozens of attributes. Furthermore, each can interact with the game world in a number of ways in order to create a complex, sophisticated, and fun gaming experience. Having a single central database containing all enemy data can streamline development and enable better management of game assets. Further, it can allow developers to have a single convenient location where they always know certain parts of game code are going to be. They have to be *somewhere*, so it makes sense for developers to have a searchable database with all of the enemies and their attributes in a single location. 
+
+Further, a central enemy database can enable better player progression and progression of game state. Terraria, the game that inspired this project idea, has tons of derivative information about enemies (how many of each of them the player has killed, how many times each of them has killed the player, how much money they've picked up, and from who.) All of this and more can be saved as a part of the enemy database, allowing for more fun, interesting, and enjoyable game play by keeping track of gameplay statistics.
+
+### Context, Scope, and Perspective
+: This database is for developers of the hypothetical game. It is designed to streamline the development experience, manage game assets, and enable new forms of player progression and facilitate progession of game state.
+
+### User Roles and Use Cases
+: There are three general roles in this database. The first is the game developer role, which manages and contributes to the game data regarding various enemies. The second is the sprite artist who designs the in game appearence of enemies, but does not contribute greatly to the game code. The third are the sound designers, who will have access to the sound table only. The first will have access to the entire database, but the sprite artist role will only have access to the sprite table, and sound designers will only have access to the sound table.
+
+### Security and Privacy
+: There database will only allow verified users (actual contributors to the game) may interact with it. In order to acheive this goal, the database will need user authentication to verify the identity of people attempting to access it. It also employs access control, such that game devs cannot mess with the sprite table, and artists cannot mess with the game code.
+
+
+
 
 ### Web interface design: 
-Your report should explain how you implemented the web interface.  What tools did you use?  Why?
+This project is hosted using docker and nginx, SQL for the database, and PHP/HTML for the website. 
+
 
 ### Screenshots: 
-For each of the major screens in your program, provide an image and an explanation of what the screen does or how it supports the user interface.
 
-### Reports: 
-Your web site should contain a Reports page with 20 queries selectable from a menu.  Each report should run.
+#### This is the login screen
+![](4081.png)
+
+#### This screen show that tables in the database
+![](4082.png)
+
+#### This screen shows the contents of the table ITEM_DROPS
+![](4083.png)
+
+#### This screen shows the contents of the table NPC
+![](4084.png)
+
+#### This screen shows the contents of the table PROJECTILE
+![](4085.png)
+
+#### This screen shows the contents of the table SOUND
+![](4086.png)
+
+#### This screen shows the contents of the table SOUND_DESIGNER
+![](4087.png)
+
+#### This screen shows the contents of the table SPRITE
+![](4088.png)
+
+#### This screen shows the contents of the table SPRITE_ARTIST
+![](4089.png)
+
+#### This screen shows the contents of the table VIDEO_GAME
+![](40811.png)
+
+#### This screen shows the contents of the table GAME_DEVELOPER
+![](40813.png)
+
+#### This is the screen to create a new record in GAME_DEVELOPER
+![](40810.png)
+
+#### This is the screen to update a record in GAME_DEVELOPER
+![](40812.png)
+
+#### This is the screen that shows all the reports
+![](40814.png)
+
+#### This screen shows an example of a report
+![](40815.png)
+
+
+
 
 ### Future considerations:
- What needs to be done next to take your project to the next level? If you had more time, what would you do next?
+ What needs to be done next to take your project to the next level? If you had more time, what would you do next? 
+To take this project to the next level, we would enhance the user interface and conduct more tests. If we had more time, the priority would be an awesome user interface. 
+
+
+
+
+
 
 ### Reflections on the overall project: 
-How did the project go? Did you achieve what you originally intended to build? If not, what kept you from achieving it?
+
+##### Achievements:
+
+-Successfully implemented a working database that satisfies the requirements of the design document.
+-Integrated the database with a web interface to showcase CRUD operations effectively.
+Created an ER diagram that outlines the database structure and relationships.
+-Ensured data integrity through the use of primary keys, foreign keys, and constraints.
+
+##### Challenges:
+
+-Time constraints limited the depth of certain features, such as advanced user authentication and real-time data integration with a game engine.
+-Developing the web interface to be fully interactive and polished proved to be more complex than anticipated, leaving room for improvement.
+
+
 
 ### ER Diagram
 The report includes a crows-foot ER diagram that visually describes the database solution and architecture.
@@ -141,11 +227,5 @@ erDiagram
  referential integrity is enforced. For instance, the `NPC` table has foreign keys   referencing the `SPRITE`, `PROJECTILE`, `SOUND`, and `ITEM_DROPS` tables, ensuring   that an NPC's attributes are linked to valid entities in these tables.    Additionally, primary keys (such as `GAME_DEV_id` in `GAME_DEVELOPER`) uniquely   identify records, while foreign keys (like `GAME_DEV_id` in `VIDEO_GAME`) maintain referential integrity between related tables. These constraints prevent orphaned records and ensure consistency across the database.
 
 
-### Data and the DDL
-    The tables are loaded using a single DDL script with appropriate data. The DDL script is documented in the report.
 
-### User Interface Design
-    The report contains a description of the user interface design with all the features documented.
 
-### Create
-    The interface includes screen(s) to create/insert new objects to the database.
